@@ -153,7 +153,7 @@ cmp.setup({
   },
 })
 
-
+-- for autopair ()
 
 local disable_filetype = { "TelescopePrompt" }
 local disable_in_macro = false  -- disable when recording or executing a macro
