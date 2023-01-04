@@ -2,13 +2,14 @@ vim.g.mapleader = " "
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {noremap = true})
 
 
-vim.o.relativenumber = true
+-- vim.o.relativenumber = true
 vim.opt.so=999
 
 require('plugins')
 
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
+
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
   'force',
@@ -217,3 +218,20 @@ require'lspconfig'.sumneko_lua.setup {
         }
     }
 }
+
+
+
+--toggle comments
+require('Comment').setup()
+
+
+function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+map("n", ",<leader>y", "\"*y", { silent = true })
+map("n", ",<leader>p", "\"*p", { silent = true })
